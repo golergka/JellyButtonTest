@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Moving : MonoBehaviour
+public class FlyingBy : MonoBehaviour
 {
 
 	void FixedUpdate ()
