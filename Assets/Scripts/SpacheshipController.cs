@@ -12,4 +12,14 @@ public class SpacheshipController : MonoBehaviour
 				transform.localPosition.z
 			);
 	}
+
+	const string TAG_OBSTACLE = "Obstacle";
+
+	void OnTriggerEnter(Collider _Other)
+	{
+		if (_Other.gameObject.tag == TAG_OBSTACLE)
+		{
+			Debug.Log("Collided with obstacle");
+		}
+	}
 }
