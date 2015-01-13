@@ -9,17 +9,21 @@ public class Spaceship : MonoBehaviour
 	void FixedUpdate()
 	{
 		var horizontalAxis = -Input.GetAxis("Horizontal");
-		var turn = horizontalAxis * StrafeSpeed;
-		transform.localPosition = new Vector3(
-				transform.localPosition.x + turn * Time.fixedDeltaTime,
-				transform.localPosition.y,
-				transform.localPosition.z
-			);
-		transform.eulerAngles = new Vector3(
-				transform.eulerAngles.x,
-				transform.eulerAngles.y,
-				horizontalAxis * RotateAngle
-			);
+		// Moving ship around
+		{
+			var turn = horizontalAxis * StrafeSpeed;
+			var movement = new Vector3(turn * Time.fixedDeltaTime, 0, 0);
+			rigidbody.MovePosition(rigidbody.position + movement);
+		}
+		// Rotating ship
+		{
+			var targetAngle = horizontalAxis * RotateAngle;
+			rigidbody.MoveRotation(Quaternion.Euler(
+					rigidbody.rotation.eulerAngles.x,
+					rigidbody.rotation.eulerAngles.y,
+					targetAngle
+				));
+		}
 	}
 
 	const string TAG_OBSTACLE = "Obstacle";
