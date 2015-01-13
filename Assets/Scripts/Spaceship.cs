@@ -34,7 +34,7 @@ public class Spaceship : MonoBehaviour
 
 	void Start()
 	{
-		Game.Instance.OnLaunch += () => gameObject.SetActive(true);
-		Game.Instance.OnOver += () => gameObject.SetActive(false);
+		Game.Instance.OnLaunch(() => gameObject.SetActive(true));
+		Game.Instance.OnOver(() => gameObject.SetActive(false));
 	}
 }

@@ -9,13 +9,13 @@ public class Game : MonoBehaviour
 	public float Acceleration	= 1f;
 
 	public float Speed { get; private set; }
-	bool m_Accelerate;
+	bool m_Playing;
 
 	void Awake()
 	{
 		Instance = this;
 		Speed = 0f;
-		m_Accelerate = false;
+		m_Playing = false;
 	}
 
 	void Start()
@@ -26,31 +26,49 @@ public class Game : MonoBehaviour
 	public void Over()
 	{
 		Speed = 0f;
-		m_Accelerate = false;
-		if (OnOver != null)
+		m_Playing = false;
+		if (m_OnOver != null)
 		{
-			OnOver();
+			m_OnOver();
 		}
 	}
 
 	public void Launch()
 	{
 		Speed = LaunchSpeed;
-		m_Accelerate = true;
-		if (OnLaunch != null)
+		m_Playing = true;
+		if (m_OnLaunch != null)
 		{
-			OnLaunch();
+			m_OnLaunch();
 		}
 	}
 
 	void FixedUpdate()
 	{
-		if (m_Accelerate)
+		if (m_Playing)
 		{
 			Speed += Acceleration * Time.fixedDeltaTime;
 		}
 	}
 
-	public System.Action OnOver;
-	public System.Action OnLaunch;
+	public void OnOver(System.Action _Callback)
+	{
+		if (!m_Playing)
+		{
+			_Callback();
+		}
+		m_OnOver += _Callback;
+	}
+
+	public void OnLaunch(System.Action _Callback)
+	{
+		if (m_Playing)
+		{
+			_Callback();
+		}
+		m_OnLaunch += _Callback;
+	}
+
+	event System.Action m_OnOver;
+	event System.Action m_OnLaunch;
 }
