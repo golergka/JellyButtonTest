@@ -958,6 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714ef57e03394426bbad75c7bce09a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StrafeSpeed: 5
 --- !u!1001 &1322651133
 Prefab:
   m_ObjectHideFlags: 0
@@ -996,6 +997,10 @@ Prefab:
     - target: {fileID: 400000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
+      propertyPath: StrafeSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}

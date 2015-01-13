@@ -3,9 +3,11 @@ using System.Collections;
 
 public class Spaceship : MonoBehaviour
 {
+	public float StrafeSpeed = 3f;
+
 	void FixedUpdate()
 	{
-		var turn = Input.GetAxis("Horizontal");
+		var turn = Input.GetAxis("Horizontal") * StrafeSpeed;
 		transform.localPosition = new Vector3(
 				transform.localPosition.x - turn * Time.fixedDeltaTime,
 				transform.localPosition.y,
