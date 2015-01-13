@@ -194,6 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f1cec40986a4d24bf69b5c9a18ba7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LaunchSpeed: 2
+  Acceleration: 1
 --- !u!4 &349933145
 Transform:
   m_ObjectHideFlags: 0
@@ -248,7 +250,7 @@ GameObject:
   - 23: {fileID: 742692603}
   - 114: {fileID: 742692607}
   m_Layer: 0
-  m_Name: Floor segment
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +303,7 @@ Transform:
   m_GameObject: {fileID: 742692602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.5, z: 0}
-  m_LocalScale: {x: 20, y: 4, z: 200}
+  m_LocalScale: {x: 20, y: 4, z: 20000}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -313,9 +315,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 742692602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da273355fbb3a41d7b356078926dd515, type: 3}
+  m_Script: {fileID: 11500000, guid: 75e437b0060454f15808ba2010a0093b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScaleFactor: .0500000007
 --- !u!1 &946004547
 GameObject:
   m_ObjectHideFlags: 0
