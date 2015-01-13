@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpacheshipController : MonoBehaviour
+public class Spaceship : MonoBehaviour
 {
 	void FixedUpdate()
 	{
