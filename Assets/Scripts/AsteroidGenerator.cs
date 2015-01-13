@@ -6,12 +6,33 @@ public class AsteroidGenerator : MonoBehaviour
 {
 	public List<Transform> Spots;
 	public GameObject AsteroidPrefab;
-	public float Period = 1f;
+	public float Distance = 50f;
 	public int Amount = 1;
 
 	void Start()
 	{
-		StartCoroutine(ContinueGeneration());
+		Game.Instance.OnLaunch += () => StartGeneration();
+		Game.Instance.OnOver += () => StopGeneration();
+	}
+
+	IEnumerator m_GenerationRoutine;
+	
+	void StartGeneration()
+	{
+		if (m_GenerationRoutine == null)
+		{
+			m_GenerationRoutine = ContinueGeneration();
+			StartCoroutine(m_GenerationRoutine);
+		}
+	}
+
+	void StopGeneration()
+	{
+		if (m_GenerationRoutine != null)
+		{
+			StopCoroutine(m_GenerationRoutine);
+			m_GenerationRoutine = null;
+		}
 	}
 
 	IEnumerator ContinueGeneration()
@@ -19,7 +40,7 @@ public class AsteroidGenerator : MonoBehaviour
 		while(true)
 		{
 			Generate(Amount);
-			yield return new WaitForSeconds(Period);
+			yield return new WaitForSeconds(Distance / Game.Instance.Speed);
 		}
 	}
 	

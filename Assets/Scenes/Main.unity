@@ -1139,7 +1139,7 @@ MonoBehaviour:
   - {fileID: 644529354}
   - {fileID: 1392004090}
   AsteroidPrefab: {fileID: 100000, guid: 7e92e64c21b6549769e466ef1c67f3bd, type: 2}
-  Period: 1
+  Distance: 15
   Amount: 1
 --- !u!1 &1639980993
 GameObject:
