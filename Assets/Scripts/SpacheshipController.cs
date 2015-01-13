@@ -7,7 +7,7 @@ public class SpacheshipController : MonoBehaviour
 	{
 		var turn = Input.GetAxis("Horizontal");
 		transform.localPosition = new Vector3(
-				transform.localPosition.x + turn * Time.fixedDeltaTime,
+				transform.localPosition.x - turn * Time.fixedDeltaTime,
 				transform.localPosition.y,
 				transform.localPosition.z
 			);
