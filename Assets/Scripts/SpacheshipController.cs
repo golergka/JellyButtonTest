@@ -19,7 +19,13 @@ public class SpacheshipController : MonoBehaviour
 	{
 		if (_Other.gameObject.tag == TAG_OBSTACLE)
 		{
-			Debug.Log("Collided with obstacle");
+			Game.Over();
 		}
+	}
+
+	void Awake()
+	{
+		Game.OnOver += () => gameObject.SetActive(true);
+		Game.OnOver += () => gameObject.SetActive(false);
 	}
 }
