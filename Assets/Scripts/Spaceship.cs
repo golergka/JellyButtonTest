@@ -34,7 +34,14 @@ public class Spaceship : MonoBehaviour
 
 	void Start()
 	{
-		Game.Instance.OnLaunch(() => gameObject.SetActive(true));
+		var initialPosition = transform.position;
+		var initialRotation = transform.rotation;
+		Game.Instance.OnLaunch(delegate
+		{
+			transform.position = initialPosition;
+			transform.rotation = initialRotation;
+			gameObject.SetActive(true);
+		});
 		Game.Instance.OnOver(() => gameObject.SetActive(false));
 	}
 }

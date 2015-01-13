@@ -71,6 +71,18 @@ public class Game : MonoBehaviour
 		}
 	}
 
+	public void Launch()
+	{
+		if (CurrentState == State.Over)
+		{
+			CurrentState = State.Launch;
+		}
+		else
+		{
+			Debug.LogError("Can't relaunch a game that's not over");
+		}
+	}
+
 	#endregion
 
 	#region System methods
