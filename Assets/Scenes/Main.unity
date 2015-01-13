@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartSpeed: 2
   Acceleration: 1
+  BoostMultiplier: 5
 --- !u!4 &349933145
 Transform:
   m_ObjectHideFlags: 0

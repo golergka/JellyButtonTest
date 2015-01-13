@@ -7,12 +7,25 @@ public class Game : MonoBehaviour
 
 	#region Configuration
 
-	public float		StartSpeed	= 2f;
-	public float		Acceleration	= 1f;
+	public float StartSpeed		= 2f;
+	public float Acceleration	= 1f;
+	public float BoostMultiplier = 5f;
 
 	#endregion
 
-	public float Speed { get; private set; }
+	#region Speed
+
+	public float Speed
+	{
+		get
+		{
+			return m_BaseSpeed * (Input.GetButton("Boost") ? BoostMultiplier : 1f);
+		}
+	}
+
+	float m_BaseSpeed;
+
+	#endregion
 
 	#region Game state
 
@@ -33,7 +46,7 @@ public class Game : MonoBehaviour
 			switch(m_CurrentState)
 			{
 				case(State.Launch):
-					Speed = 0f;
+					m_BaseSpeed = 0f;
 					if (m_OnLaunch != null)
 					{
 						m_OnLaunch();
@@ -41,7 +54,7 @@ public class Game : MonoBehaviour
 					break;
 
 				case(State.Playing):
-					Speed = StartSpeed;
+					m_BaseSpeed = StartSpeed;
 					if (m_OnPlaying != null)
 					{
 						m_OnPlaying();
@@ -49,7 +62,7 @@ public class Game : MonoBehaviour
 					break;
 
 				case(State.Over):
-					Speed = 0f;
+					m_BaseSpeed = 0f;
 					if (m_OnOver != null)
 					{
 						m_OnOver();
@@ -109,7 +122,7 @@ public class Game : MonoBehaviour
 	{
 		if (CurrentState == State.Playing)
 		{
-			Speed += Acceleration * Time.fixedDeltaTime;
+			m_BaseSpeed += Acceleration * Time.fixedDeltaTime;
 		}
 	}
 
