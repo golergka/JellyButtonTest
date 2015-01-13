@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 
 public class Game : MonoBehaviour
 {
@@ -59,11 +59,6 @@ public class Game : MonoBehaviour
 					{
 						m_OnLaunch();
 					}
-					foreach(var d in m_DestroyOnLaunch)
-					{
-						Destroy(d);
-					}
-					m_DestroyOnLaunch.Clear();
 					break;
 
 				case(State.Playing):
@@ -107,17 +102,6 @@ public class Game : MonoBehaviour
 		{
 			Debug.LogError("Can't relaunch a game that's not over");
 		}
-	}
-
-	#endregion
-
-	#region Destroy on launch
-
-	List<GameObject> m_DestroyOnLaunch = new List<GameObject>();
-
-	public void DestroyOnLaunch(GameObject _ToDestroy)
-	{
-		m_DestroyOnLaunch.Add(_ToDestroy);
 	}
 
 	#endregion
