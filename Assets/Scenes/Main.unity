@@ -909,7 +909,7 @@ Transform:
   m_PrefabInternal: {fileID: 1322651133}
   m_GameObject: {fileID: 1244124861}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: 0, y: 1.3434, z: .445569992}
+  m_LocalPosition: {x: 0, y: 2.79920006, z: .445569992}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 565206775}
@@ -959,6 +959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StrafeSpeed: 5
+  RotateAngle: 40
 --- !u!1001 &1322651133
 Prefab:
   m_ObjectHideFlags: 0
@@ -972,7 +973,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.3434
+      value: 2.79920006
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -996,7 +997,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
       propertyPath: StrafeSpeed

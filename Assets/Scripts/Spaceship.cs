@@ -4,14 +4,21 @@ using System.Collections;
 public class Spaceship : MonoBehaviour
 {
 	public float StrafeSpeed = 3f;
+	public float RotateAngle = 40f;
 
 	void FixedUpdate()
 	{
-		var turn = Input.GetAxis("Horizontal") * StrafeSpeed;
+		var horizontalAxis = -Input.GetAxis("Horizontal");
+		var turn = horizontalAxis * StrafeSpeed;
 		transform.localPosition = new Vector3(
-				transform.localPosition.x - turn * Time.fixedDeltaTime,
+				transform.localPosition.x + turn * Time.fixedDeltaTime,
 				transform.localPosition.y,
 				transform.localPosition.z
+			);
+		transform.eulerAngles = new Vector3(
+				transform.eulerAngles.x,
+				transform.eulerAngles.y,
+				horizontalAxis * RotateAngle
 			);
 	}
 
