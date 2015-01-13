@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class Game
+public class Game : MonoBehaviour
 {
-	public static void Over()
+	public static Game Instance { get; private set; }
+
+	void Awake()
+	{
+		Instance = this;
+	}
+
+	public void Over()
 	{
 		if (OnOver != null)
 		{
@@ -11,7 +18,7 @@ public static class Game
 		}
 	}
 
-	public static void Start()
+	public void Start()
 	{
 		if (OnStart != null)
 		{
@@ -19,6 +26,6 @@ public static class Game
 		}
 	}
 
-	public static System.Action OnOver;
-	public static System.Action OnStart;
+	public System.Action OnOver;
+	public System.Action OnStart;
 }

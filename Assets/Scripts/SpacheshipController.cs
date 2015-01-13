@@ -19,13 +19,13 @@ public class SpacheshipController : MonoBehaviour
 	{
 		if (_Other.gameObject.tag == TAG_OBSTACLE)
 		{
-			Game.Over();
+			Game.Instance.Over();
 		}
 	}
 
 	void Awake()
 	{
-		Game.OnOver += () => gameObject.SetActive(true);
-		Game.OnOver += () => gameObject.SetActive(false);
+		Game.Instance.OnOver += () => gameObject.SetActive(true);
+		Game.Instance.OnOver += () => gameObject.SetActive(false);
 	}
 }
