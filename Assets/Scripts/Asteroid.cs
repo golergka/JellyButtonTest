@@ -5,8 +5,7 @@ public class Asteroid : MonoBehaviour
 {
 	void Start()
 	{
-		// TODO: Memory leak with this delegate
-		Game.Instance.OnLaunch(() => Destroy(gameObject));
+		Game.Instance.DestroyOnLaunch(gameObject);
 	}
 
 	void FixedUpdate ()
