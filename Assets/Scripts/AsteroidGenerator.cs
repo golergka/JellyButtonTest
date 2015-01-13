@@ -11,7 +11,7 @@ public class AsteroidGenerator : MonoBehaviour
 
 	void Start()
 	{
-		Game.Instance.OnLaunch(() => StartGeneration());
+		Game.Instance.OnPlaying(() => StartGeneration());
 		Game.Instance.OnOver(() => StopGeneration());
 	}
 
