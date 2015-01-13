@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FlyingBy : MonoBehaviour
+public class Asteroid : MonoBehaviour
 {
 	void FixedUpdate ()
 	{
