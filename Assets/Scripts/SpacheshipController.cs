@@ -23,9 +23,9 @@ public class SpacheshipController : MonoBehaviour
 		}
 	}
 
-	void Awake()
+	void Start()
 	{
-		Game.Instance.OnOver += () => gameObject.SetActive(true);
+		Game.Instance.OnLaunch += () => gameObject.SetActive(true);
 		Game.Instance.OnOver += () => gameObject.SetActive(false);
 	}
 }
