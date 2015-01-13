@@ -7,8 +7,8 @@ public class Game : MonoBehaviour
 
 	#region Configuration
 
-	public float StartSpeed	= 2f;
-	public float Acceleration	= 1f;
+	public float		StartSpeed	= 2f;
+	public float		Acceleration	= 1f;
 
 	#endregion
 
@@ -61,7 +61,14 @@ public class Game : MonoBehaviour
 
 	public void Over()
 	{
-		CurrentState = State.Over;
+		if (CurrentState == State.Playing)
+		{
+			CurrentState = State.Over;
+		}
+		else
+		{
+			Debug.LogError("Can't over a game that isn't playing!");
+		}
 	}
 
 	#endregion
