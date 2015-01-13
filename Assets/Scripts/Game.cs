@@ -13,13 +13,21 @@ public class Game : MonoBehaviour
 
 	#endregion
 
-	#region Speed
+	#region Speed state
+
+	public bool Boost
+	{
+		get
+		{
+			return Input.GetButton("Boost");
+		}
+	}
 
 	public float Speed
 	{
 		get
 		{
-			return m_BaseSpeed * (Input.GetButton("Boost") ? BoostMultiplier : 1f);
+			return m_BaseSpeed * (Boost ? BoostMultiplier : 1f);
 		}
 	}
 
@@ -29,7 +37,7 @@ public class Game : MonoBehaviour
 
 	#region Game state
 
-	enum State
+	public enum State
 	{
 		Launch,
 		Playing,
@@ -37,10 +45,10 @@ public class Game : MonoBehaviour
 	};
 
 	State m_CurrentState;
-	State CurrentState
+	public State CurrentState
 	{
 		get { return m_CurrentState; }
-		set
+		private set
 		{
 			m_CurrentState = value;
 			switch(m_CurrentState)

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LaunchInvitation : MonoBehaviour
+public class UILaunch : MonoBehaviour
 {
 	void Start()
 	{

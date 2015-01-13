@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameOverScreen : MonoBehaviour
+public class UIGameOver : MonoBehaviour
 {
 	void Start ()
 	{
