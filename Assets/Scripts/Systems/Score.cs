@@ -35,7 +35,10 @@ public class Score : MonoBehaviour
 		get { return m_CurrentFloat; }
 		set
 		{
-			StartCoroutine(ScoreSound(Mathf.FloorToInt(value) - Current));
+			if (value > Current)
+			{
+				m_ScoreToPlay += Mathf.FloorToInt(value) - Current;
+			}
 			m_CurrentFloat = value;
 			if (Hi < Current)
 			{
@@ -45,21 +48,31 @@ public class Score : MonoBehaviour
 		}
 	}
 
-	IEnumerator ScoreSound(int _Amount)
+	int m_ScoreToPlay;
+
+	IEnumerator ScoreSound()
 	{
-		while(_Amount > 0)
+		while(true)
 		{
-			if (_Amount >= AsteroidScore)
+			if (m_ScoreToPlay > 0)
 			{
-				audio.PlayOneShot(ClipAsteroid);
-				_Amount -= AsteroidScore;
+				Debug.Log("m_ScoreToPlay: " + m_ScoreToPlay);
+				if (m_ScoreToPlay >= AsteroidScore)
+				{
+					audio.PlayOneShot(ClipAsteroid);
+					m_ScoreToPlay -= AsteroidScore;
+				}
+				else
+				{
+					audio.PlayOneShot(ClipSingle);
+					m_ScoreToPlay--;
+				}
+				yield return new WaitForSeconds(AudioDelay);
 			}
 			else
 			{
-				audio.PlayOneShot(ClipSingle);
-				_Amount--;
+				yield return new WaitForEndOfFrame();
 			}
-			yield return new WaitForSeconds(AudioDelay);
 		}
 	}
 
@@ -78,6 +91,7 @@ public class Score : MonoBehaviour
 
 	void Start ()
 	{
+		StartCoroutine(ScoreSound());
 		Game.Instance.OnLaunch(delegate
 		{	
 			CurrentFloat = 0;

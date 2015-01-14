@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95686511ad49540b1953475e2affdbf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmissionFactor: 2
+  EmissionFactor: .5
 --- !u!199 &340064257
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -3340,7 +3340,7 @@ MonoBehaviour:
   ClipSingle: {fileID: 8300000, guid: 804f083bf26c1406dbc4949a235b4a55, type: 3}
   ClipAsteroid: {fileID: 8300000, guid: 2f2b3adcba3c247838b681e1e7fca811, type: 3}
   AsteroidScore: 5
-  AudioDelay: .200000003
+  AudioDelay: .125
 --- !u!4 &1760464381
 Transform:
   m_ObjectHideFlags: 0
