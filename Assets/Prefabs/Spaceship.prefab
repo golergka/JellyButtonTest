@@ -767,6 +767,7 @@ MonoBehaviour:
   StrafeSpeed: 20
   RotateAngle: 40
   LimitX: 8
+  ExplosionPrefab: {fileID: 100000, guid: 41a341f8a7a34451ca4963093695b11c, type: 2}
   NormalEnginePitch: 1
   BoostEnginePitch: 2
   Attack: 1

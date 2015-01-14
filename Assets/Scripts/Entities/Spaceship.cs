@@ -9,6 +9,8 @@ public class Spaceship : MonoBehaviour
 	public float RotateAngle = 40f;
 	public float LimitX = 20f;
 
+	public GameObject ExplosionPrefab;
+
 	void FixedUpdate()
 	{
 		var horizontalAxis = -Input.GetAxis("Horizontal");
@@ -71,6 +73,7 @@ public class Spaceship : MonoBehaviour
 			gameObject.SetActive(true);
 		});
 		Game.Instance.OnOver(() => gameObject.SetActive(false));
+		Game.Instance.OnOver(() => Instantiate(ExplosionPrefab, transform.position, transform.rotation));
 	}
 
 	void OnDrawGizmosSelected()
