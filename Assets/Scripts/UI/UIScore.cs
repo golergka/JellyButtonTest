@@ -19,6 +19,6 @@ public class UIScore : MonoBehaviour
 
 	void Update ()
 	{
-		Text.text = Score.Instance.Current.ToString();
+		Text.text = "Score: " + Score.Instance.Current.ToString() + " Highest: " + Score.Instance.Hi.ToString();
 	}
 }

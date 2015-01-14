@@ -14,25 +14,52 @@ public class Score : MonoBehaviour
 
 	public int Current
 	{
-		get { return Mathf.FloorToInt(m_CurrentFloat); }
+		get { return Mathf.FloorToInt(CurrentFloat); }
 	}
+
 	float m_CurrentFloat;
+	float CurrentFloat
+	{
+		get { return m_CurrentFloat; }
+		set
+		{
+			m_CurrentFloat = value;
+			if (Hi < Current)
+			{
+				Hi = Current;
+			}
+		}
+	}
+
+	const string HIGHSCORE_KEY = "Highscore";
+	public int Hi
+	{
+		get
+		{
+			return PlayerPrefs.GetInt(HIGHSCORE_KEY);
+		}
+		private set
+		{
+			PlayerPrefs.SetInt(HIGHSCORE_KEY, value);
+		}
+	}
 
 	void Start ()
 	{
-		Game.Instance.OnLaunch(() => m_CurrentFloat = 0);
+		Game.Instance.OnLaunch(() => CurrentFloat = 0);
+		Game.Instance.OnOver(() => PlayerPrefs.Save());
 	}
 
 	void Update()
 	{
 		if (Game.Instance.CurrentState == Game.State.Playing)
 		{
-			m_CurrentFloat += Time.deltaTime * (Game.Instance.Boost ? PerBoostSecond : PerSecond);
+			CurrentFloat += Time.deltaTime * (Game.Instance.Boost ? PerBoostSecond : PerSecond);
 		}
 	}
 
 	public void AsteroidCought()
 	{
-		m_CurrentFloat += 5f;
+		CurrentFloat += 5f;
 	}
 }
