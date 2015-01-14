@@ -957,6 +957,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11100000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
@@ -1156,7 +1168,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1099661249}
   m_LocalRotation: {x: 2.17471996e-08, y: .991051078, z: -.13348341, w: -1.61462822e-07}
-  m_LocalPosition: {x: 0, y: 1.4454, z: 11.7150002}
+  m_LocalPosition: {x: 0, y: 11.1520004, z: 11.7150002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1172,11 +1184,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0880c2d1583b0a146985baad05098107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 10
-  height: 5
-  heightDamping: 1
-  rotationDamping: 1
-  target: {fileID: 1244124865}
+  BoostDistanceMultiplier: 3
+  BoostFOVMultiplier: 2
+  TransitionTime: .200000003
+  PositionSnap: 2
+  FOVSnap: 10
+  BoostDelta: {x: 0, y: -5, z: -9}
+  Target: {fileID: 1244124865}
 --- !u!82 &1099661256
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1443,7 +1457,7 @@ Transform:
   m_GameObject: {fileID: 1244124861}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: -1.62920685e-07}
   m_LocalPosition: {x: 0, y: 2.79920006, z: .445569992}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 565206775}
   - {fileID: 19305743}
