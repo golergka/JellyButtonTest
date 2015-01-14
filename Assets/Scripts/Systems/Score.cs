@@ -20,6 +20,7 @@ public class Score : MonoBehaviour
 	{
 		get { return Mathf.FloorToInt(CurrentFloat); }
 	}
+	public bool BrokenHigh { get; private set; }
 
 	public AudioClip ClipSingle;
 	public AudioClip ClipAsteroid;
@@ -39,6 +40,7 @@ public class Score : MonoBehaviour
 			if (Hi < Current)
 			{
 				Hi = Current;
+				BrokenHigh = true;
 			}
 		}
 	}
@@ -76,9 +78,13 @@ public class Score : MonoBehaviour
 
 	void Start ()
 	{
-		Game.Instance.OnLaunch(() => CurrentFloat = 0);
-		Game.Instance.OnLaunch(() => Asteroids = 0);
-		Game.Instance.OnLaunch(() => TimeElapsed = 0);
+		Game.Instance.OnLaunch(delegate
+		{	
+			CurrentFloat = 0;
+			Asteroids	= 0;
+			TimeElapsed = 0;
+			BrokenHigh = false;
+		});
 		Game.Instance.OnOver(() => PlayerPrefs.Save());
 	}
 
