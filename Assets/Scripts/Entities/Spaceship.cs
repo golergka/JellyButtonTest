@@ -9,6 +9,9 @@ public class Spaceship : MonoBehaviour
 	public float RotateAngle = 40f;
 	public float LimitX = 20f;
 
+	public float HoverPeriod = 1f;
+	public float HoverAmplitude = 1f;
+
 	public GameObject ExplosionPrefab;
 
 	void FixedUpdate()
@@ -24,6 +27,7 @@ public class Spaceship : MonoBehaviour
 					InitialPosition.x -LimitX ,
 					InitialPosition.x + LimitX
 				);
+			targetPosition.y = InitialPosition.y + HoverAmplitude * Mathf.Sin(4 * Time.fixedTime / HoverPeriod);
 			rigidbody.MovePosition(targetPosition);
 		}
 		// Rotating ship
