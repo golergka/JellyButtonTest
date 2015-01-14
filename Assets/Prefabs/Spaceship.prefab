@@ -749,7 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714ef57e03394426bbad75c7bce09a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StrafeSpeed: 20
+  StrafeSpeed: 40
   RotateAngle: 40
   LimitX: 8
   HoverPeriod: 1

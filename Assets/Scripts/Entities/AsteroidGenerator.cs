@@ -7,7 +7,15 @@ public class AsteroidGenerator : MonoBehaviour
 	public List<Transform> Spots;
 	public SphereCollider AsteroidPrefab;
 	public float Distance = 50f;
-	public int Amount = 1;
+	public float LevelUpDistance = 300f;
+	int Amount
+	{
+		get
+		{
+			int result = 1 + Mathf.FloorToInt(m_DistanceTraversed / LevelUpDistance);
+			return (result <= Spots.Count - 1) ? result : (Spots.Count - 1);
+		}
+	}
 	
 	float m_DistanceTraversed;
 	float m_DistanceGenerated;
@@ -22,7 +30,7 @@ public class AsteroidGenerator : MonoBehaviour
 
 	void Generate(int _Amount)
 	{
-		var chosenSpots = Spots.TakeRandom(_Amount);
+		var chosenSpots = Spots.TakeRandom(Random.Range(0, _Amount + 1));
 		foreach(var spot in chosenSpots)
 		{
 			Instantiate(AsteroidPrefab, spot.transform.position, spot.transform.rotation);
