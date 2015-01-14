@@ -1,19 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(Rigidbody))]
 public class Spaceship : MonoBehaviour
 {
 	public float StrafeSpeed = 3f;
 	public float RotateAngle = 40f;
+	public float LimitX = 20f;
 
 	void FixedUpdate()
 	{
 		var horizontalAxis = -Input.GetAxis("Horizontal");
 		// Moving ship around
 		{
-			var turn = horizontalAxis * StrafeSpeed;
-			var movement = new Vector3(turn * Time.fixedDeltaTime, 0, 0);
-			rigidbody.MovePosition(rigidbody.position + movement);
+			var turn = horizontalAxis * StrafeSpeed * Time.fixedDeltaTime;
+			var movement = new Vector3(turn, 0, 0);
+			var targetPosition = rigidbody.position + movement;
+			targetPosition.x = Mathf.Clamp(
+					targetPosition.x,
+					InitialPosition.x -LimitX ,
+					InitialPosition.x + LimitX
+				);
+			rigidbody.MovePosition(targetPosition);
 		}
 		// Rotating ship
 		{
@@ -26,7 +34,24 @@ public class Spaceship : MonoBehaviour
 		}
 	}
 
-	const string TAG_OBSTACLE = "Obstacle";
+	Vector3 InitialPosition
+	{
+		get
+		{
+			return m_InitialPosition == null ?
+				rigidbody.position :
+				m_InitialPosition.Value;
+		}
+	}
+
+	Vector3? m_InitialPosition;
+
+	void Awake()
+	{
+		m_InitialPosition = rigidbody.position;
+	}
+
+	const string TAG_OBSTACLE	= "Obstacle";
 
 	void OnTriggerEnter(Collider _Other)
 	{
@@ -47,5 +72,14 @@ public class Spaceship : MonoBehaviour
 			gameObject.SetActive(true);
 		});
 		Game.Instance.OnOver(() => gameObject.SetActive(false));
+	}
+
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.blue;
+		var leftLimit = InitialPosition + new Vector3(-LimitX,0,0);
+		var rightLimit = InitialPosition + new Vector3(LimitX,0,0);
+		Gizmos.DrawLine(InitialPosition, leftLimit);
+		Gizmos.DrawLine(InitialPosition, rightLimit);
 	}
 }
