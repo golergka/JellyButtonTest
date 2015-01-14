@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class AsteroidGenerator : MonoBehaviour
 {
 	public List<Transform> Spots;
-	public GameObject AsteroidPrefab;
+	public SphereCollider AsteroidPrefab;
 	public float Distance = 50f;
 	public int Amount = 1;
 
@@ -50,6 +50,15 @@ public class AsteroidGenerator : MonoBehaviour
 		foreach(var spot in chosenSpots)
 		{
 			Instantiate(AsteroidPrefab, spot.transform.position, spot.transform.rotation);
+		}
+	}
+
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.blue;
+		foreach(var s in Spots)
+		{
+			Gizmos.DrawSphere(s.position, AsteroidPrefab.radius);
 		}
 	}
 }
