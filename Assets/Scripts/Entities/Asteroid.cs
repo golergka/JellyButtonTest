@@ -19,6 +19,11 @@ public class Asteroid : MonoBehaviour
 		}
 	}
 
+	void Start()
+	{
+		transform.Rotate(Vector3.up * Random.Range(0f, 360f), Space.World);
+	}
+
 	public float RotationSpeed = 10f;
 	public float FlyByZ = 5f;
 }
