@@ -22,7 +22,7 @@ public class Score : MonoBehaviour
 	}
 
 	public AudioClip ClipSingle;
-	public AudioClip ClipFive;
+	public AudioClip ClipAsteroid;
 
 	public int AsteroidScore = 5;
 
@@ -49,7 +49,7 @@ public class Score : MonoBehaviour
 		{
 			if (_Amount >= AsteroidScore)
 			{
-				audio.PlayOneShot(ClipFive);
+				audio.PlayOneShot(ClipAsteroid);
 				_Amount -= AsteroidScore;
 			}
 			else

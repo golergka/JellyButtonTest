@@ -2210,7 +2210,7 @@ MonoBehaviour:
   PerSecond: 1
   PerBoostSecond: 2
   ClipSingle: {fileID: 8300000, guid: 804f083bf26c1406dbc4949a235b4a55, type: 3}
-  ClipFive: {fileID: 8300000, guid: 2f2b3adcba3c247838b681e1e7fca811, type: 3}
+  ClipAsteroid: {fileID: 8300000, guid: 2f2b3adcba3c247838b681e1e7fca811, type: 3}
   AsteroidScore: 5
   AudioDelay: .200000003
 --- !u!4 &1760464381
