@@ -51,11 +51,9 @@ public class Spaceship : MonoBehaviour
 		m_InitialPosition = rigidbody.position;
 	}
 
-	const string TAG_OBSTACLE	= "Obstacle";
-
 	void OnTriggerEnter(Collider _Other)
 	{
-		if (_Other.gameObject.tag == TAG_OBSTACLE)
+		if (_Other.GetComponent<Asteroid>() != null)
 		{
 			Game.Instance.Over();
 		}

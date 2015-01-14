@@ -30,4 +30,9 @@ public class Score : MonoBehaviour
 			m_CurrentFloat += Time.deltaTime * (Game.Instance.Boost ? PerBoostSecond : PerSecond);
 		}
 	}
+
+	public void AsteroidCought()
+	{
+		m_CurrentFloat += 5f;
+	}
 }
