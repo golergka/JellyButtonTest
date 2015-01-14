@@ -19,6 +19,10 @@ public class UIScore : MonoBehaviour
 
 	void Update ()
 	{
-		Text.text = "Score: " + Score.Instance.Current.ToString() + " Highest: " + Score.Instance.Hi.ToString();
+		var t = System.TimeSpan.FromSeconds(Score.Instance.TimeElapsed);
+		Text.text = "Score: " + Score.Instance.Current.ToString()
+			+ " Highest: " + Score.Instance.Hi.ToString()
+			+ " Asteroids: " + Score.Instance.Asteroids
+			+ " Time played: " + string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
 	}
 }

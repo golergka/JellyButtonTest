@@ -13,6 +13,9 @@ public class Score : MonoBehaviour
 	public int PerSecond = 1;
 	public int PerBoostSecond = 2;
 
+	public int Asteroids { get; private set; }
+	public float TimeElapsed { get; private set; }
+
 	public int Current
 	{
 		get { return Mathf.FloorToInt(CurrentFloat); }
@@ -74,6 +77,8 @@ public class Score : MonoBehaviour
 	void Start ()
 	{
 		Game.Instance.OnLaunch(() => CurrentFloat = 0);
+		Game.Instance.OnLaunch(() => Asteroids = 0);
+		Game.Instance.OnLaunch(() => TimeElapsed = 0);
 		Game.Instance.OnOver(() => PlayerPrefs.Save());
 	}
 
@@ -82,11 +87,13 @@ public class Score : MonoBehaviour
 		if (Game.Instance.CurrentState == Game.State.Playing)
 		{
 			CurrentFloat += Time.deltaTime * (Game.Instance.Boost ? PerBoostSecond : PerSecond);
+			TimeElapsed += Time.deltaTime;
 		}
 	}
 
 	public void AsteroidFlownBy()
 	{
 		CurrentFloat += AsteroidScore;
+		Asteroids++;
 	}
 }
