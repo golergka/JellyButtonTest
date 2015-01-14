@@ -6,6 +6,7 @@ public class Floor : MonoBehaviour
 	float m_Offset;
 
 	public float ScaleFactor = 1f;
+	public AnimationCurve Cycle;
 
 	// Update is called once per frame
 	void Update ()
@@ -15,5 +16,7 @@ public class Floor : MonoBehaviour
 		renderer.material.SetTextureOffset("_SpecTex", new Vector2(0, m_Offset));
 		renderer.material.SetTextureOffset("_NormalTex", new Vector2(0, m_Offset));
 		renderer.material.SetTextureOffset("_EmissionTex", new Vector2(0, m_Offset));
+		float emission = Cycle.Evaluate(Time.time);
+		renderer.material.SetFloat("_Emission", emission);
 	}
 }

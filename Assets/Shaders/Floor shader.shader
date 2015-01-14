@@ -9,8 +9,7 @@ Shader "Jelly Button Games/Road" {
         _SpecTex ("SpecTex", 2D) = "white" {}
         _NormalTex ("NormalTex", 2D) = "bump" {}
         _EmissionTex ("EmissionTex", 2D) = "white" {}
-		_Period ("Period", Float) = 1
-		_TimeEditor ("Time in editor", Float) = 0
+		_Emission ("Emission", Range(0,1)) = 0
     }
     SubShader {
         Tags {
@@ -32,9 +31,8 @@ Shader "Jelly Button Games/Road" {
             #pragma multi_compile_fwdbase_fullshadows
             #pragma exclude_renderers xbox360 ps3 flash 
             #pragma target 3.0
-			uniform float _Period;
+			uniform float _Emission;
             uniform float4 _LightColor0;
-            uniform float _TimeEditor;
             uniform sampler2D _MainTex; uniform float4 _MainTex_ST;
             uniform sampler2D _SpecTex; uniform float4 _SpecTex_ST;
             uniform sampler2D _NormalTex; uniform float4 _NormalTex_ST;
@@ -81,8 +79,7 @@ Shader "Jelly Button Games/Road" {
                 float NdotL = dot( normalDirection, lightDirection );
                 float3 diffuse = max( 0.0, NdotL) * attenColor + UNITY_LIGHTMODEL_AMBIENT.xyz;
 ////// Emissive:
-				float timeMod = sin(2 * (_Time.a + _TimeEditor) / _Period);
-                float3 emissive = (tex2D(_EmissionTex,TRANSFORM_TEX(node_43.rg, _EmissionTex)).rgb*timeMod);
+                float3 emissive = (tex2D(_EmissionTex,TRANSFORM_TEX(node_43.rg, _EmissionTex)).rgb*_Emission);
 ///////// Gloss:
                 float gloss = exp2(0.5*10.0+1.0);
 ////// Specular:

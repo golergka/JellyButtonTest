@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof(Rigidbody))]
+[RequireComponent (typeof(AudioSource))]
 public class Spaceship : MonoBehaviour
 {
 	public float StrafeSpeed = 3f;
@@ -79,5 +80,26 @@ public class Spaceship : MonoBehaviour
 		var rightLimit = InitialPosition + new Vector3(LimitX,0,0);
 		Gizmos.DrawLine(InitialPosition, leftLimit);
 		Gizmos.DrawLine(InitialPosition, rightLimit);
+	}
+
+	public float NormalEnginePitch = 1f;
+	public float BoostEnginePitch = 2f;
+	public float Attack = 1f;
+	public float Release = 1f;
+	void Update()
+	{
+		var pitch = audio.pitch;
+		if (Game.Instance.Boost)
+		{
+			pitch += Mathf.Sign(BoostEnginePitch - NormalEnginePitch)
+				* Time.deltaTime / Attack;
+		}
+		else
+		{
+			pitch += Mathf.Sign(NormalEnginePitch - BoostEnginePitch)
+				* Time.deltaTime / Release;
+		}
+		pitch = Mathf.Clamp(pitch, NormalEnginePitch, BoostEnginePitch);
+		audio.pitch = pitch;
 	}
 }
