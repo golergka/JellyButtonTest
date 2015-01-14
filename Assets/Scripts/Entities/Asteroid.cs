@@ -11,6 +11,7 @@ public class Asteroid : MonoBehaviour
 				transform.position.z + Time.fixedDeltaTime * Game.Instance.Speed
 			);
 
+		transform.Rotate(Vector3.up * Time.fixedDeltaTime * RotationSpeed, Space.World);
 		if (transform.position.z >= FlyByZ)
 		{
 			Score.Instance.AsteroidFlownBy();
@@ -18,5 +19,6 @@ public class Asteroid : MonoBehaviour
 		}
 	}
 
+	public float RotationSpeed = 10f;
 	public float FlyByZ = 5f;
 }
