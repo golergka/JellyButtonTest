@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(AudioSource))]
 public class Score : MonoBehaviour
 {
 	public static Score Instance;
@@ -17,17 +18,43 @@ public class Score : MonoBehaviour
 		get { return Mathf.FloorToInt(CurrentFloat); }
 	}
 
+	public AudioClip ClipSingle;
+	public AudioClip ClipFive;
+
+	public int AsteroidScore = 5;
+
+	public float AudioDelay = 0.200f;
+
 	float m_CurrentFloat;
 	float CurrentFloat
 	{
 		get { return m_CurrentFloat; }
 		set
 		{
+			StartCoroutine(ScoreSound(Mathf.FloorToInt(value) - Current));
 			m_CurrentFloat = value;
 			if (Hi < Current)
 			{
 				Hi = Current;
 			}
+		}
+	}
+
+	IEnumerator ScoreSound(int _Amount)
+	{
+		while(_Amount > 0)
+		{
+			if (_Amount >= AsteroidScore)
+			{
+				audio.PlayOneShot(ClipFive);
+				_Amount -= AsteroidScore;
+			}
+			else
+			{
+				audio.PlayOneShot(ClipSingle);
+				_Amount--;
+			}
+			yield return new WaitForSeconds(AudioDelay);
 		}
 	}
 
@@ -58,8 +85,8 @@ public class Score : MonoBehaviour
 		}
 	}
 
-	public void AsteroidCought()
+	public void AsteroidFlownBy()
 	{
-		CurrentFloat += 5f;
+		CurrentFloat += AsteroidScore;
 	}
 }

@@ -309,7 +309,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &495438529
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,54 +798,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e18f7c879d9d148d796511a6ff8087f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &910019976
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 910019979}
-  - 33: {fileID: 910019978}
-  - 65: {fileID: 910019977}
-  m_Layer: 0
-  m_Name: AsteroidCatcher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &910019977
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 910019976}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &910019978
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 910019976}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &910019979
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 910019976}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.87039995, z: 6.70590019}
-  m_LocalScale: {x: 22.1700001, y: 5.86999989, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
 --- !u!1 &946004547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,7 +957,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11100000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 85573303e89114835b2e55ea7a6179a4, type: 2}
   m_RootGameObject: {fileID: 1244124861}
   m_IsPrefabParent: 0
@@ -1442,7 +1395,6 @@ GameObject:
   - 4: {fileID: 1244124865}
   - 33: {fileID: 1244124864}
   - 23: {fileID: 1244124863}
-  - 111: {fileID: 1244124862}
   - 54: {fileID: 1244124867}
   - 114: {fileID: 1244124868}
   - 64: {fileID: 1244124866}
@@ -1454,21 +1406,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!111 &1244124862
-Animation:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11100000, guid: 85573303e89114835b2e55ea7a6179a4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1024879469}
-  m_GameObject: {fileID: 1244124861}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!23 &1244124863
 Renderer:
   m_ObjectHideFlags: 0
@@ -2217,6 +2154,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1760464381}
   - 114: {fileID: 1760464380}
+  - 82: {fileID: 1760464382}
   m_Layer: 0
   m_Name: Score
   m_TagString: Untagged
@@ -2237,6 +2175,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PerSecond: 1
   PerBoostSecond: 2
+  ClipSingle: {fileID: 8300000, guid: 804f083bf26c1406dbc4949a235b4a55, type: 3}
+  ClipFive: {fileID: 8300000, guid: 2f2b3adcba3c247838b681e1e7fca811, type: 3}
+  AsteroidScore: 5
+  AudioDelay: .200000003
 --- !u!4 &1760464381
 Transform:
   m_ObjectHideFlags: 0
@@ -2249,3 +2191,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!82 &1760464382
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1760464379}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: d49b1495fd66d468eae5c93683e254d1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: .709999979
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 1
+  BypassListenerEffects: 1
+  BypassReverbZones: 1
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
