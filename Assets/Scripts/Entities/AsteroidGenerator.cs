@@ -8,42 +8,18 @@ public class AsteroidGenerator : MonoBehaviour
 	public SphereCollider AsteroidPrefab;
 	public float Distance = 50f;
 	public int Amount = 1;
+	
+	float m_DistanceTraversed;
+	float m_DistanceGenerated;
 
 	void Start()
 	{
-		Game.Instance.OnPlaying(() => StartGeneration());
-		Game.Instance.OnOver(() => StopGeneration());
+		Game.Instance.OnLaunch(delegate {
+			m_DistanceTraversed = 0f;
+			m_DistanceGenerated = 0f;
+		});
 	}
 
-	IEnumerator m_GenerationRoutine;
-	
-	void StartGeneration()
-	{
-		if (m_GenerationRoutine == null)
-		{
-			m_GenerationRoutine = ContinueGeneration();
-			StartCoroutine(m_GenerationRoutine);
-		}
-	}
-
-	void StopGeneration()
-	{
-		if (m_GenerationRoutine != null)
-		{
-			StopCoroutine(m_GenerationRoutine);
-			m_GenerationRoutine = null;
-		}
-	}
-
-	IEnumerator ContinueGeneration()
-	{
-		while(true)
-		{
-			Generate(Amount);
-			yield return new WaitForSeconds(Distance / Game.Instance.Speed);
-		}
-	}
-	
 	void Generate(int _Amount)
 	{
 		var chosenSpots = Spots.TakeRandom(_Amount);
@@ -59,6 +35,19 @@ public class AsteroidGenerator : MonoBehaviour
 		foreach(var s in Spots)
 		{
 			Gizmos.DrawSphere(s.position, AsteroidPrefab.radius);
+		}
+	}
+
+	void Update()
+	{
+		if (Game.Instance.CurrentState == Game.State.Playing)
+		{
+			m_DistanceTraversed += Time.deltaTime * Game.Instance.Speed;
+			if (m_DistanceTraversed - m_DistanceGenerated >= Distance)
+			{
+				Generate(Amount);
+				m_DistanceGenerated = m_DistanceTraversed;
+			}
 		}
 	}
 }
