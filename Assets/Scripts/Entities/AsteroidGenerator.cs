@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class AsteroidGenerator : MonoBehaviour
 {
+	static public AsteroidGenerator Instance;
+	void Awake()
+	{
+		Instance = this;
+	}
+
 	public List<Transform> Spots;
 	public SphereCollider AsteroidPrefab;
 	public float Distance = 50f;

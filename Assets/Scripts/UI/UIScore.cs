@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent (typeof(Text))]
 public class UIScore : MonoBehaviour
 {
 	Text m_Text;
@@ -15,6 +16,19 @@ public class UIScore : MonoBehaviour
 			}
 			return m_Text;
 		}
+	}
+
+	void Start()
+	{
+		Tutorial.Instance.OnStepSteering(delegate
+		{
+			gameObject.SetActive(false);
+		});
+
+		Tutorial.Instance.OnStepComplete(delegate
+		{
+			gameObject.SetActive(true);
+		});
 	}
 
 	void Update ()
