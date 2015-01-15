@@ -56,7 +56,6 @@ public class Score : MonoBehaviour
 		{
 			if (m_ScoreToPlay > 0)
 			{
-				Debug.Log("m_ScoreToPlay: " + m_ScoreToPlay);
 				if (m_ScoreToPlay >= AsteroidScore)
 				{
 					audio.PlayOneShot(ClipAsteroid);
