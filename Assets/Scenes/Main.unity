@@ -3051,7 +3051,7 @@ MonoBehaviour:
   - {fileID: 2126271029}
   - {fileID: 1698135298}
   AsteroidPrefab: {fileID: 13500000, guid: 7e92e64c21b6549769e466ef1c67f3bd, type: 2}
-  Distance: 25
+  Distance: 50
   LevelUpDistance: 500
 --- !u!1 &1518549829
 GameObject:
@@ -3157,10 +3157,10 @@ RectTransform:
   - {fileID: 793124113}
   m_Father: {fileID: 707839843}
   m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: 1}
-  m_AnchorMax: {x: .5, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -16}
-  m_SizeDelta: {x: 680, y: 31}
+  m_SizeDelta: {x: 0, y: 31}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1620199262
 MonoBehaviour:
