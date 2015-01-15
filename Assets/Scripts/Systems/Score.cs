@@ -90,6 +90,7 @@ public class Score : MonoBehaviour
 
 	void Start ()
 	{
+		PlayerPrefs.DeleteAll();
 		StartCoroutine(ScoreSound());
 		Game.Instance.OnState(delegate(Game.State _Current)
 		{	
