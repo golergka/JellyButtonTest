@@ -26,9 +26,21 @@ public class Movement : MonoBehaviour
 
 	void Start()
 	{
-		Game.Instance.OnLaunch(() => m_BaseSpeed = 0f);
-		Game.Instance.OnPlaying(() => m_BaseSpeed = StartSpeed);
-		Game.Instance.OnOver(() => m_BaseSpeed = 0f);
+		Game.Instance.OnState(delegate(Game.State _Current)
+		{
+			switch(_Current)
+			{
+				case(Game.State.Launch):
+					m_BaseSpeed = 0f;
+					break;
+				case(Game.State.Playing):
+					m_BaseSpeed = StartSpeed;
+					break;
+				case(Game.State.Over):
+					m_BaseSpeed = 0f;
+					break;
+			}
+		});
 	}
 
 	#endregion

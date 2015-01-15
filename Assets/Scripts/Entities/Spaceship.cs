@@ -71,14 +71,22 @@ public class Spaceship : MonoBehaviour
 	{
 		var initialPosition = transform.position;
 		var initialRotation = transform.rotation;
-		Game.Instance.OnLaunch(delegate
+		Game.Instance.OnState(delegate(Game.State _Current)
 		{
-			transform.position = initialPosition;
-			transform.rotation = initialRotation;
-			gameObject.SetActive(true);
+			switch(_Current)
+			{
+				case (Game.State.Launch):
+					transform.position = initialPosition;
+					transform.rotation = initialRotation;
+					gameObject.SetActive(true);
+					break;
+
+				case (Game.State.Over):
+					gameObject.SetActive(false);
+					Instantiate(ExplosionPrefab, transform.position, transform.rotation);
+					break;
+			}
 		});
-		Game.Instance.OnOver(() => gameObject.SetActive(false));
-		Game.Instance.OnOver(() => Instantiate(ExplosionPrefab, transform.position, transform.rotation));
 	}
 
 	void OnDrawGizmosSelected()

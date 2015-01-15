@@ -5,7 +5,9 @@ public class UILaunch : MonoBehaviour
 {
 	void Start()
 	{
-		Game.Instance.OnLaunch(() => gameObject.SetActive(true));
-		Game.Instance.OnPlaying(() => gameObject.SetActive(false));
+		Game.Instance.OnState(delegate(Game.State _Current)
+		{
+			gameObject.SetActive(_Current == Game.State.Launch);
+		});
 	}
 }

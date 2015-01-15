@@ -28,9 +28,13 @@ public class AsteroidGenerator : MonoBehaviour
 
 	void Start()
 	{
-		Game.Instance.OnLaunch(delegate {
-			m_DistanceTraversed = 0f;
-			m_DistanceGenerated = 0f;
+		Game.Instance.OnState(delegate(Game.State _Current)
+		{
+			if (_Current == Game.State.Launch)
+			{
+				m_DistanceTraversed = 0f;
+				m_DistanceGenerated = 0f;
+			}
 		});
 	}
 

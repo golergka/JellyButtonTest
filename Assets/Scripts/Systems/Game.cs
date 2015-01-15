@@ -21,28 +21,9 @@ public class Game : MonoBehaviour
 		private set
 		{
 			m_CurrentState = value;
-			switch(m_CurrentState)
+			if (m_OnState != null)
 			{
-				case(State.Launch):
-					if (m_OnLaunch != null)
-					{
-						m_OnLaunch();
-					}
-					break;
-
-				case(State.Playing):
-					if (m_OnPlaying != null)
-					{
-						m_OnPlaying();
-					}
-					break;
-
-				case(State.Over):
-					if (m_OnOver != null)
-					{
-						m_OnOver();
-					}
-					break;
+				m_OnState(CurrentState);
 			}
 		}
 	}
@@ -91,38 +72,15 @@ public class Game : MonoBehaviour
 
 	#endregion
 
-	#region Callbacks
+	#region Callback
 
-	public void OnOver(System.Action _Callback)
+	public void OnState(System.Action<State> _Callback)
 	{
-		if (CurrentState == State.Over)
-		{
-			_Callback();
-		}
-		m_OnOver += _Callback;
+		_Callback(CurrentState);
+		m_OnState += _Callback;
 	}
 
-	public void OnPlaying(System.Action _Callback)
-	{
-		if (CurrentState == State.Playing)
-		{
-			_Callback();
-		}
-		m_OnPlaying += _Callback;
-	}
-
-	public void OnLaunch(System.Action _Callback)
-	{
-		if (CurrentState == State.Launch)
-		{
-			_Callback();
-		}
-		m_OnLaunch += _Callback;
-	}
-
-	event System.Action m_OnOver;
-	event System.Action	m_OnPlaying;
-	event System.Action m_OnLaunch;
+	event System.Action<State> m_OnState;
 
 	#endregion
 }

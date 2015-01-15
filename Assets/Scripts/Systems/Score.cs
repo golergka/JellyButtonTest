@@ -91,14 +91,21 @@ public class Score : MonoBehaviour
 	void Start ()
 	{
 		StartCoroutine(ScoreSound());
-		Game.Instance.OnLaunch(delegate
+		Game.Instance.OnState(delegate(Game.State _Current)
 		{	
-			CurrentFloat = 0;
-			Asteroids	= 0;
-			TimeElapsed = 0;
-			BrokenHigh = false;
+			switch(_Current)
+			{
+				case(Game.State.Launch):
+					CurrentFloat = 0;
+					Asteroids	= 0;
+					TimeElapsed = 0;
+					BrokenHigh = false;
+					break;
+				case(Game.State.Over):
+					PlayerPrefs.Save();
+					break;
+			}
 		});
-		Game.Instance.OnOver(() => PlayerPrefs.Save());
 	}
 
 	void Update()

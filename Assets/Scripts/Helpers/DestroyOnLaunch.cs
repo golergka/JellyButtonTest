@@ -16,13 +16,16 @@ public class DestroyOnLaunch : MonoBehaviour
 	{
 		if (!m_Init)
 		{
-			Game.Instance.OnLaunch(delegate
+			Game.Instance.OnState(delegate(Game.State _Current)
 			{
-				foreach(var g in m_ToDestroy)
+				if (_Current == Game.State.Launch)
 				{
-					Destroy(g);
+					foreach(var g in m_ToDestroy)
+					{
+						Destroy(g);
+					}
+					m_ToDestroy.Clear();
 				}
-				m_ToDestroy.Clear();
 			});
 			m_Init = true;
 		}

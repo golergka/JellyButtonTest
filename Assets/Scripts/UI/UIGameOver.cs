@@ -6,11 +6,17 @@ public class UIGameOver : MonoBehaviour
 	public GameObject Congradulations;
 	void Start ()
 	{
-		Game.Instance.OnLaunch(() => gameObject.SetActive(false));
-		Game.Instance.OnOver(delegate
+		Game.Instance.OnState(delegate(Game.State _Current)
 		{
-			gameObject.SetActive(true);
-			Congradulations.SetActive(Score.Instance.BrokenHigh);
+			if (Game.State.Over == _Current)
+			{
+				gameObject.SetActive(true);
+				Congradulations.SetActive(Score.Instance.BrokenHigh);
+			}
+			else
+			{
+				gameObject.SetActive(false);
+			}
 		});
 	}
 }
