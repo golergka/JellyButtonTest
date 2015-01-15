@@ -20,14 +20,9 @@ public class UIScore : MonoBehaviour
 
 	void Start()
 	{
-		Tutorial.Instance.OnStepSteering(delegate
+		Tutorial.Instance.OnStep(delegate(Tutorial.Step _Current)
 		{
-			gameObject.SetActive(false);
-		});
-
-		Tutorial.Instance.OnStepComplete(delegate
-		{
-			gameObject.SetActive(true);
+			gameObject.SetActive(_Current == Tutorial.Step.Complete);
 		});
 	}
 

@@ -20,22 +20,22 @@ public class UITutorial : MonoBehaviour
 
 	void Start()
 	{
-		Tutorial.Instance.OnStepSteering(delegate
+		Tutorial.Instance.OnStep(delegate(Tutorial.Step _Current)
 		{
-			Debug.Log("Steering");
-			gameObject.SetActive(true);
-			Text.text = "Press A or left to steer left, and D or right to steer right";
-		});
-
-		Tutorial.Instance.OnStepBoost(delegate
-		{
-			gameObject.SetActive(true);
-			Text.text = "Press Space to activate the boost";
-		});
-		
-		Tutorial.Instance.OnStepComplete(delegate
-		{
-			gameObject.SetActive(false);
+			switch(_Current)
+			{
+				case(Tutorial.Step.Steering):
+					gameObject.SetActive(true);
+					Text.text = "Press A or left to steer left, and D or right to steer right";
+					break;
+				case(Tutorial.Step.Boost):
+					gameObject.SetActive(true);
+					Text.text = "Press Space to activate the boost";
+					break;
+				case(Tutorial.Step.Complete):
+					gameObject.SetActive(false);
+					break;
+			}
 		});
 	}
 }

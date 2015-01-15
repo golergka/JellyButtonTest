@@ -23,68 +23,26 @@ public class Tutorial : MonoBehaviour
 	}
 
 	Step m_CurrentStep;
-	public Step CurrentStep
+	Step CurrentStep
 	{
 		get { return m_CurrentStep; }
 		set
 		{
 			m_CurrentStep = value;
-			switch(value)
+			if (m_OnStep != null)
 			{
-				case (Step.Steering):
-					if (m_OnStepSteering != null)
-					{
-						m_OnStepSteering();
-					}
-					break;
-
-				case (Step.Boost):
-					if (m_OnStepBoost != null)
-					{
-						m_OnStepBoost();
-					}
-					break;
-
-				case (Step.Complete):
-					if (m_OnStepComplete != null)
-					{
-						m_OnStepComplete();
-					}
-					break;
+				m_OnStep(m_CurrentStep);
 			}
 		}
 	}
 
-	public void OnStepSteering(System.Action _Callback)
+	public void OnStep(System.Action<Step> _Callback)
 	{
-		if (CurrentStep == Step.Steering)
-		{
-			_Callback();
-		}
-		m_OnStepSteering += _Callback;
+		_Callback(CurrentStep);
+		m_OnStep += _Callback;
 	}
 
-	public void OnStepBoost(System.Action _Callback)
-	{
-		if (CurrentStep == Step.Boost)
-		{
-			_Callback();
-		}
-		m_OnStepBoost += _Callback;
-	}
-
-	public void OnStepComplete(System.Action _Callback)
-	{
-		if (CurrentStep == Step.Complete)
-		{
-			_Callback();
-		}
-		m_OnStepComplete += _Callback;
-	}
-
-	event System.Action m_OnStepSteering;
-	event System.Action m_OnStepBoost;
-	event System.Action m_OnStepComplete;
+	event System.Action<Step> m_OnStep;
 
 	IEnumerator Learning()
 	{
