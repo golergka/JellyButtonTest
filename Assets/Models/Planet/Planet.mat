@@ -55,18 +55,6 @@ Material:
         second: {r: .995825052, g: 1, b: .850746274, a: 1}
       data:
         first:
-          name: _Color1
-        second: {r: .480116934, g: .597014904, b: 0, a: 1}
-      data:
-        first:
-          name: _Color2
-        second: {r: .201492548, g: .165511727, b: 0, a: 1}
-      data:
-        first:
-          name: _Color3
-        second: {r: 1, g: 0, b: 0, a: 1}
-      data:
-        first:
           name: _RimColor
         second: {r: .365671635, g: .600772321, b: 1, a: 1}
       data:
@@ -81,6 +69,18 @@ Material:
         first:
           name: _AtmosphereColor
         second: {r: .5, g: .5, b: 1, a: 1}
+      data:
+        first:
+          name: _Color1
+        second: {r: .480116934, g: .597014904, b: 0, a: 1}
+      data:
+        first:
+          name: _Color2
+        second: {r: .201492548, g: .165511727, b: 0, a: 1}
+      data:
+        first:
+          name: _Color3
+        second: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6

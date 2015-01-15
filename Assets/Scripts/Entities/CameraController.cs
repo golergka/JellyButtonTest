@@ -63,14 +63,21 @@ public class CameraController : MonoBehaviour
 		// Where do we need to get
 		var desiredPos = Target.position + r_Delta + (Controller.Boost ? BoostDelta : Vector3.zero);
 		// How far is that
-		var deltaPos = (desiredPos - transform.position).normalized * PositionSpeed * Time.deltaTime;
+		var deltaPos = desiredPos - transform.position;
+		// To what extend we need to apply that delta
+		// (Carefull, we mustn't go farther than 100%)
+		var deltaPosFactor = Mathf.Clamp01(PositionSpeed * Time.deltaTime / deltaPos.magnitude);
+		// Applying that factor
+		deltaPos *= deltaPosFactor;
 		// Can we snap to that position?
 		var snapPos = (desiredPos - transform.position).magnitude < PositionSnap;
 		transform.position = snapPos ? desiredPos : (transform.position + deltaPos);
 
 		// Exactly the same computation for field of view
 		var desiredFOV = r_FOV * (Controller.Boost ? BoostFOVMultiplier : 1f);
-		var deltaFOV = Mathf.Sign(desiredFOV - camera.fieldOfView) * FOVSpeed * Time.deltaTime;
+		var deltaFOV = desiredFOV - camera.fieldOfView;
+		var deltaFOVFactor = Mathf.Clamp01(Mathf.Abs(FOVSpeed * Time.deltaTime / deltaFOV));
+		deltaFOV *= deltaFOVFactor;
 		var snapFOV = Mathf.Abs(desiredFOV - camera.fieldOfView) < FOVSnap;
 		camera.fieldOfView = snapFOV ? desiredFOV : (camera.fieldOfView + deltaFOV);
 
