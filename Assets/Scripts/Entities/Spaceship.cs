@@ -96,7 +96,7 @@ public class Spaceship : MonoBehaviour
 	void Update()
 	{
 		var pitch = audio.pitch;
-		if (Game.Instance.Boost)
+		if (Movement.Instance.Boost)
 		{
 			pitch += Mathf.Sign(BoostEnginePitch - NormalEnginePitch)
 				* Time.deltaTime / Attack;

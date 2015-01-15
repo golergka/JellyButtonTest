@@ -8,7 +8,7 @@ public class Dots : MonoBehaviour
 
 	void Update ()
 	{
-		particleSystem.startSpeed = Game.Instance.Speed;
-		particleSystem.emissionRate = Game.Instance.Speed * EmissionFactor;
+		particleSystem.startSpeed = Movement.Instance.Speed;
+		particleSystem.emissionRate = Movement.Instance.Speed * EmissionFactor;
 	}
 }

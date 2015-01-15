@@ -8,7 +8,7 @@ public class Asteroid : MonoBehaviour
 		transform.position = new Vector3(
 				transform.position.x,
 				transform.position.y,
-				transform.position.z + Time.fixedDeltaTime * Game.Instance.Speed
+				transform.position.z + Time.fixedDeltaTime * Movement.Instance.Speed
 			);
 
 		transform.Rotate(Vector3.up * Time.fixedDeltaTime * RotationSpeed, Space.World);

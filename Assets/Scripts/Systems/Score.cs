@@ -105,7 +105,7 @@ public class Score : MonoBehaviour
 	{
 		if (Game.Instance.CurrentState == Game.State.Playing)
 		{
-			CurrentFloat += Time.deltaTime * (Game.Instance.Boost ? PerBoostSecond : PerSecond);
+			CurrentFloat += Time.deltaTime * (Movement.Instance.Boost ? PerBoostSecond : PerSecond);
 			TimeElapsed += Time.deltaTime;
 		}
 	}

@@ -50,7 +50,7 @@ public class AsteroidGenerator : MonoBehaviour
 	{
 		if (Game.Instance.CurrentState == Game.State.Playing)
 		{
-			m_DistanceTraversed += Time.deltaTime * Game.Instance.Speed;
+			m_DistanceTraversed += Time.deltaTime * Movement.Instance.Speed;
 			if (m_DistanceTraversed - m_DistanceGenerated >= Distance)
 			{
 				Generate(Amount);

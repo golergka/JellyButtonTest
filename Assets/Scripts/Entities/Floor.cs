@@ -11,7 +11,7 @@ public class Floor : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		m_Offset += Time.deltaTime * Game.Instance.Speed * ScaleFactor;
+		m_Offset += Time.deltaTime * Movement.Instance.Speed * ScaleFactor;
 		renderer.material.SetTextureOffset("_MainTex", new Vector2(0, m_Offset));
 		renderer.material.SetTextureOffset("_SpecTex", new Vector2(0, m_Offset));
 		renderer.material.SetTextureOffset("_NormalTex", new Vector2(0, m_Offset));
