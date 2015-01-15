@@ -2,7 +2,6 @@
 using System.Collections;
 
 [RequireComponent (typeof(Rigidbody))]
-[RequireComponent (typeof(AudioSource))]
 public class Spaceship : MonoBehaviour
 {
 	#region Configuration
@@ -15,11 +14,6 @@ public class Spaceship : MonoBehaviour
 	public float HoverAmplitude = 1f;
 
 	public GameObject ExplosionPrefab;
-
-	public float NormalEnginePitch = 1f;
-	public float BoostEnginePitch = 2f;
-	public float Attack = 1f;
-	public float Release = 1f;
 
 	#endregion
 
@@ -97,23 +91,6 @@ public class Spaceship : MonoBehaviour
 		}
 	}
 
-	void Update()
-	{
-		var pitch = audio.pitch;
-		if (Controller.Boost)
-		{
-			pitch += Mathf.Sign(BoostEnginePitch - NormalEnginePitch)
-				* Time.deltaTime / Attack;
-		}
-		else
-		{
-			pitch += Mathf.Sign(NormalEnginePitch - BoostEnginePitch)
-				* Time.deltaTime / Release;
-		}
-		pitch = Mathf.Clamp(pitch, NormalEnginePitch, BoostEnginePitch);
-		audio.pitch = pitch;
-	}
-	
 	#endregion
 
 	#region Initial configuration
