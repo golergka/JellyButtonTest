@@ -43,19 +43,11 @@ public class Movement : MonoBehaviour
 
 	#region Speed state
 
-	public bool Boost
-	{
-		get
-		{
-			return Input.GetButton("Boost");
-		}
-	}
-
 	public float Speed
 	{
 		get
 		{
-			return m_BaseSpeed * (Boost ? BoostMultiplier : 1f);
+			return m_BaseSpeed * (Controller.Boost ? BoostMultiplier : 1f);
 		}
 	}
 

@@ -16,7 +16,8 @@ public class Spaceship : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		var horizontalAxis = -Input.GetAxis("Horizontal");
+		// Inverting because of our inverted scene
+		var horizontalAxis = -Controller.Steering;
 		// Moving ship around
 		{
 			var turn = horizontalAxis * StrafeSpeed * Time.fixedDeltaTime;
@@ -96,7 +97,7 @@ public class Spaceship : MonoBehaviour
 	void Update()
 	{
 		var pitch = audio.pitch;
-		if (Movement.Instance.Boost)
+		if (Controller.Boost)
 		{
 			pitch += Mathf.Sign(BoostEnginePitch - NormalEnginePitch)
 				* Time.deltaTime / Attack;

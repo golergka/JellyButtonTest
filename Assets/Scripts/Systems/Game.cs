@@ -83,7 +83,7 @@ public class Game : MonoBehaviour
 
 	void Update()
 	{
-		if (CurrentState == State.Launch && Input.GetAxis("Horizontal") != 0f)
+		if (CurrentState == State.Launch && Controller.AnyKey)
 		{
 			CurrentState = State.Playing;
 		}

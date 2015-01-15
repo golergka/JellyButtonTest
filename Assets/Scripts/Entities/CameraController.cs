@@ -45,12 +45,12 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-		var desiredPos = Target.position + r_Delta + (Movement.Instance.Boost ? BoostDelta : Vector3.zero);
+		var desiredPos = Target.position + r_Delta + (Controller.Boost ? BoostDelta : Vector3.zero);
 		var deltaPos = (desiredPos - transform.position).normalized * PositionSpeed * Time.deltaTime;
 		var snapPos = (desiredPos - transform.position).magnitude < PositionSnap;
 		transform.position = snapPos ? desiredPos : (transform.position + deltaPos);
 
-		var desiredFOV = r_FOV * (Movement.Instance.Boost ? BoostFOVMultiplier : 1f);
+		var desiredFOV = r_FOV * (Controller.Boost ? BoostFOVMultiplier : 1f);
 		var deltaFOV = Mathf.Sign(desiredFOV - camera.fieldOfView) * FOVSpeed * Time.deltaTime;
 		var snapFOV = Mathf.Abs(desiredFOV - camera.fieldOfView) < FOVSnap;
 		camera.fieldOfView = snapFOV ? desiredFOV : (camera.fieldOfView + deltaFOV);
