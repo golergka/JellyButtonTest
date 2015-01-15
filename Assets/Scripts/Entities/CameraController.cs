@@ -3,24 +3,30 @@
 [RequireComponent (typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
-	Vector3 r_Delta;
-	float r_FOV;
+	#region Configuration
 
-	public float BoostDistanceMultiplier = 2f;
-	public float BoostFOVMultiplier = 0.5f;
+    public Transform	Target;
 
-	public float TransitionTime = 1f;
-	public float PositionSnap = 0.1f;
-	public float FOVSnap = 5f;
-	public Vector3 BoostDelta;
+	public float		TransitionTime = 1f;
+
+	public float		BoostFOVMultiplier = 0.5f;
+	public Vector3		BoostDelta;
+
+	public float		PositionSnap = 0.1f;
+	public float		FOVSnap = 5f;
+
+	#endregion
+
+	#region Helper properties
 
     float PositionSpeed
 	{
 		get
 		{
-			return Mathf.Abs(BoostDistanceMultiplier - 1f) * r_Delta.magnitude / TransitionTime;
+			return Mathf.Abs(BoostDelta.magnitude - 1f) * r_Delta.magnitude / TransitionTime;
 		}
 	}
+
 	float FOVSpeed
 	{
 		get
@@ -28,8 +34,17 @@ public class CameraController : MonoBehaviour
 			return Mathf.Abs(BoostFOVMultiplier - 1f) * r_FOV / TransitionTime;
 		}
 	}
+	
+	#endregion
 
-    public Transform Target;
+	#region Initial state
+
+	Vector3 r_Delta;
+	float	r_FOV;
+
+	#endregion
+
+	#region Engine methods
 
 	void Start()
 	{
@@ -45,11 +60,15 @@ public class CameraController : MonoBehaviour
             return;
         }
 
+		// Where do we need to get
 		var desiredPos = Target.position + r_Delta + (Controller.Boost ? BoostDelta : Vector3.zero);
+		// How far is that
 		var deltaPos = (desiredPos - transform.position).normalized * PositionSpeed * Time.deltaTime;
+		// Can we snap to that position?
 		var snapPos = (desiredPos - transform.position).magnitude < PositionSnap;
 		transform.position = snapPos ? desiredPos : (transform.position + deltaPos);
 
+		// Exactly the same computation for field of view
 		var desiredFOV = r_FOV * (Controller.Boost ? BoostFOVMultiplier : 1f);
 		var deltaFOV = Mathf.Sign(desiredFOV - camera.fieldOfView) * FOVSpeed * Time.deltaTime;
 		var snapFOV = Mathf.Abs(desiredFOV - camera.fieldOfView) < FOVSnap;
@@ -71,4 +90,6 @@ public class CameraController : MonoBehaviour
 			   	camera.aspect
 			);
 	}
+
+	#endregion
 }

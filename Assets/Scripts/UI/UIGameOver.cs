@@ -3,7 +3,14 @@ using System.Collections;
 
 public class UIGameOver : MonoBehaviour
 {
+	#region Configuration
+
 	public GameObject Congradulations;
+
+	#endregion
+
+	#region Engine methods
+
 	void Start ()
 	{
 		Game.Instance.OnState(delegate(Game.State _Current)
@@ -19,4 +26,6 @@ public class UIGameOver : MonoBehaviour
 			}
 		});
 	}
+
+	#endregion
 }

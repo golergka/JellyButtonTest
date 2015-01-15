@@ -4,27 +4,27 @@ using System.Collections.Generic;
 
 public class AsteroidGenerator : MonoBehaviour
 {
+	#region Singleton
+
 	static public AsteroidGenerator Instance;
-	void Awake()
-	{
-		Instance = this;
-	}
+
+	#endregion
+
+	#region Configuration
 
 	public List<Transform> Spots;
 	public SphereCollider AsteroidPrefab;
 	public float Distance = 50f;
 	public float LevelUpDistance = 300f;
-	int Amount
+
+	#endregion
+
+	#region Engine methods
+
+	void Awake()
 	{
-		get
-		{
-			int result = 1 + Mathf.FloorToInt(m_DistanceTraversed / LevelUpDistance);
-			return (result <= Spots.Count - 1) ? result : (Spots.Count - 1);
-		}
+		Instance = this;
 	}
-	
-	float m_DistanceTraversed;
-	float m_DistanceGenerated;
 
 	void Start()
 	{
@@ -36,15 +36,6 @@ public class AsteroidGenerator : MonoBehaviour
 				m_DistanceGenerated = 0f;
 			}
 		});
-	}
-
-	void Generate(int _Amount)
-	{
-		var chosenSpots = Spots.TakeRandom(Random.Range(0, _Amount + 1));
-		foreach(var spot in chosenSpots)
-		{
-			Instantiate(AsteroidPrefab, spot.transform.position, spot.transform.rotation);
-		}
 	}
 
 	void OnDrawGizmosSelected()
@@ -68,4 +59,32 @@ public class AsteroidGenerator : MonoBehaviour
 			}
 		}
 	}
+
+	#endregion
+
+	#region Generation
+
+	int Amount
+	{
+		get
+		{
+			int result = 1 + Mathf.FloorToInt(m_DistanceTraversed / LevelUpDistance);
+			return (result <= Spots.Count - 1) ? result : (Spots.Count - 1);
+		}
+	}
+	
+	float m_DistanceTraversed;
+	float m_DistanceGenerated;
+
+	void Generate(int _Amount)
+	{
+		var chosenSpots = Spots.TakeRandom(Random.Range(0, _Amount + 1));
+		foreach(var spot in chosenSpots)
+		{
+			Instantiate(AsteroidPrefab, spot.transform.position, spot.transform.rotation);
+		}
+	}
+
+	#endregion
+
 }

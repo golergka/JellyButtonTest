@@ -3,6 +3,15 @@ using System.Collections;
 
 public class Asteroid : MonoBehaviour
 {
+	#region Configuration
+
+	public float RotationSpeed = 10f;
+	public float FlyByZ = 5f;
+	
+	#endregion
+
+	#region Engine methods
+
 	void FixedUpdate ()
 	{
 		transform.position = new Vector3(
@@ -24,6 +33,6 @@ public class Asteroid : MonoBehaviour
 		transform.Rotate(Vector3.up * Random.Range(0f, 360f), Space.World);
 	}
 
-	public float RotationSpeed = 10f;
-	public float FlyByZ = 5f;
+	#endregion
+
 }

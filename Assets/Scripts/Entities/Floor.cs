@@ -3,12 +3,22 @@ using System.Collections;
 
 public class Floor : MonoBehaviour
 {
-	float m_Offset;
+
+	#region Configuration
 
 	public float ScaleFactor = 1f;
 	public AnimationCurve Cycle;
 
-	// Update is called once per frame
+	#endregion
+
+	#region Scroll state
+
+	float m_Offset;
+
+	#endregion
+
+	#region Engine methods
+
 	void Update ()
 	{
 		m_Offset += Time.deltaTime * Movement.Instance.Speed * ScaleFactor;
@@ -19,4 +29,6 @@ public class Floor : MonoBehaviour
 		float emission = Cycle.Evaluate(Time.time);
 		renderer.material.SetFloat("_Emission", emission);
 	}
+
+	#endregion
 }

@@ -4,8 +4,14 @@ using System.Collections.Generic;
 public class DestroyOnLaunch : MonoBehaviour
 {
 
+	#region Global state
+
 	static List<GameObject> m_ToDestroy = new List<GameObject>();
-	static bool m_Init;
+	static bool m_Init = false;
+
+	#endregion
+
+	#region Engine methods
 
 	void Awake()
 	{
@@ -30,4 +36,6 @@ public class DestroyOnLaunch : MonoBehaviour
 			m_Init = true;
 		}
 	}
+
+	#endregion
 }

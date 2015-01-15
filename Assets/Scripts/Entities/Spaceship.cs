@@ -5,6 +5,8 @@ using System.Collections;
 [RequireComponent (typeof(AudioSource))]
 public class Spaceship : MonoBehaviour
 {
+	#region Configuration
+
 	public float StrafeSpeed = 3f;
 	public float RotateAngle = 40f;
 	public float LimitX = 20f;
@@ -14,45 +16,14 @@ public class Spaceship : MonoBehaviour
 
 	public GameObject ExplosionPrefab;
 
-	void FixedUpdate()
-	{
-		// Inverting because of our inverted scene
-		var horizontalAxis = -Controller.Steering;
-		// Moving ship around
-		{
-			var turn = horizontalAxis * StrafeSpeed * Time.fixedDeltaTime;
-			var movement = new Vector3(turn, 0, 0);
-			var targetPosition = rigidbody.position + movement;
-			targetPosition.x = Mathf.Clamp(
-					targetPosition.x,
-					InitialPosition.x -LimitX ,
-					InitialPosition.x + LimitX
-				);
-			targetPosition.y = InitialPosition.y + HoverAmplitude * Mathf.Sin(4 * Time.fixedTime / HoverPeriod);
-			rigidbody.MovePosition(targetPosition);
-		}
-		// Rotating ship
-		{
-			var targetAngle = horizontalAxis * RotateAngle;
-			rigidbody.MoveRotation(Quaternion.Euler(
-					rigidbody.rotation.eulerAngles.x,
-					rigidbody.rotation.eulerAngles.y,
-					targetAngle
-				));
-		}
-	}
+	public float NormalEnginePitch = 1f;
+	public float BoostEnginePitch = 2f;
+	public float Attack = 1f;
+	public float Release = 1f;
 
-	Vector3 InitialPosition
-	{
-		get
-		{
-			return m_InitialPosition == null ?
-				rigidbody.position :
-				m_InitialPosition.Value;
-		}
-	}
+	#endregion
 
-	Vector3? m_InitialPosition;
+	#region Engine methods
 
 	void Awake()
 	{
@@ -98,10 +69,34 @@ public class Spaceship : MonoBehaviour
 		Gizmos.DrawLine(InitialPosition, rightLimit);
 	}
 
-	public float NormalEnginePitch = 1f;
-	public float BoostEnginePitch = 2f;
-	public float Attack = 1f;
-	public float Release = 1f;
+	void FixedUpdate()
+	{
+		// Inverting because of our inverted scene
+		var horizontalAxis = -Controller.Steering;
+		// Moving ship around
+		{
+			var turn = horizontalAxis * StrafeSpeed * Time.fixedDeltaTime;
+			var movement = new Vector3(turn, 0, 0);
+			var targetPosition = rigidbody.position + movement;
+			targetPosition.x = Mathf.Clamp(
+					targetPosition.x,
+					InitialPosition.x -LimitX ,
+					InitialPosition.x + LimitX
+				);
+			targetPosition.y = InitialPosition.y + HoverAmplitude * Mathf.Sin(4 * Time.fixedTime / HoverPeriod);
+			rigidbody.MovePosition(targetPosition);
+		}
+		// Rotating ship
+		{
+			var targetAngle = horizontalAxis * RotateAngle;
+			rigidbody.MoveRotation(Quaternion.Euler(
+					rigidbody.rotation.eulerAngles.x,
+					rigidbody.rotation.eulerAngles.y,
+					targetAngle
+				));
+		}
+	}
+
 	void Update()
 	{
 		var pitch = audio.pitch;
@@ -118,4 +113,24 @@ public class Spaceship : MonoBehaviour
 		pitch = Mathf.Clamp(pitch, NormalEnginePitch, BoostEnginePitch);
 		audio.pitch = pitch;
 	}
+	
+	#endregion
+
+	#region Initial configuration
+
+	Vector3 InitialPosition
+	{
+		get
+		{
+			return m_InitialPosition == null ?
+				rigidbody.position :
+				m_InitialPosition.Value;
+		}
+	}
+
+	Vector3? m_InitialPosition;
+
+	#endregion
+
+
 }

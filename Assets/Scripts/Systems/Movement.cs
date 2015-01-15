@@ -9,6 +9,14 @@ public class Movement : MonoBehaviour
 
 	#endregion
 
+	#region Configuration
+
+	public float StartSpeed			= 6f;
+	public float Acceleration		= 1.5f;
+	public float BoostMultiplier	= 2f;
+
+	#endregion
+
 	#region Engine methods
 
 	void FixedUpdate()
@@ -45,15 +53,7 @@ public class Movement : MonoBehaviour
 
 	#endregion
 
-	#region Configuration
-
-	public float StartSpeed			= 6f;
-	public float Acceleration		= 1.5f;
-	public float BoostMultiplier	= 2f;
-
-	#endregion
-
-	#region Speed state
+	#region Speed 
 
 	public float Speed
 	{

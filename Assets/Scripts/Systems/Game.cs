@@ -3,7 +3,11 @@ using System.Collections;
 
 public class Game : MonoBehaviour
 {
+	#region Singleton
+
 	public static Game Instance { get; private set; }
+
+	#endregion
 
 	#region Game state
 
@@ -27,6 +31,10 @@ public class Game : MonoBehaviour
 			}
 		}
 	}
+
+	#endregion
+
+	#region Public methods for changing state
 
 	public void Over()
 	{
@@ -54,7 +62,7 @@ public class Game : MonoBehaviour
 
 	#endregion
 
-	#region System methods
+	#region Engine methods
 
 	void Awake()
 	{
@@ -72,7 +80,7 @@ public class Game : MonoBehaviour
 
 	#endregion
 
-	#region Callback
+	#region State callback
 
 	public void OnState(System.Action<State> _Callback)
 	{

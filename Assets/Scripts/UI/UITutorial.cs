@@ -5,6 +5,8 @@ using System.Collections;
 [RequireComponent (typeof(Text))]
 public class UITutorial : MonoBehaviour
 {
+	#region Component properties
+
 	Text m_Text;
 	Text Text
 	{
@@ -17,6 +19,10 @@ public class UITutorial : MonoBehaviour
 			return m_Text;
 		}
 	}
+
+	#endregion
+
+	#region Engine methods
 
 	void Start()
 	{
@@ -38,4 +44,6 @@ public class UITutorial : MonoBehaviour
 			}
 		});
 	}
+
+	#endregion
 }

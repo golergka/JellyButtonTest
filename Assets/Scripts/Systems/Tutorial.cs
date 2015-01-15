@@ -3,7 +3,13 @@ using System.Collections;
 
 public class Tutorial : MonoBehaviour
 {
+	#region Singleton
+
 	static public Tutorial Instance;
+
+	#endregion
+
+	#region Engine methods
 
 	void Awake()
 	{
@@ -14,6 +20,10 @@ public class Tutorial : MonoBehaviour
 	{
 		StartCoroutine(Learning());
 	}
+
+	#endregion
+
+	#region Tutorial state
 
 	public enum Step
 	{
@@ -36,6 +46,10 @@ public class Tutorial : MonoBehaviour
 		}
 	}
 
+	#endregion
+
+	#region State callback
+
 	public void OnStep(System.Action<Step> _Callback)
 	{
 		_Callback(CurrentStep);
@@ -43,6 +57,10 @@ public class Tutorial : MonoBehaviour
 	}
 
 	event System.Action<Step> m_OnStep;
+
+	#endregion
+
+	#region Tutorial step logic
 
 	IEnumerator Learning()
 	{
@@ -65,4 +83,6 @@ public class Tutorial : MonoBehaviour
 		Score.Instance.enabled = true;
 
 	}
+
+	#endregion
 }

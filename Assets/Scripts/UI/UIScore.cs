@@ -5,6 +5,8 @@ using System.Collections;
 [RequireComponent (typeof(Text))]
 public class UIScore : MonoBehaviour
 {
+	#region Component properties
+
 	Text m_Text;
 	Text Text
 	{
@@ -17,6 +19,10 @@ public class UIScore : MonoBehaviour
 			return m_Text;
 		}
 	}
+
+	#endregion
+
+	#region Engine methods
 
 	void Start()
 	{
@@ -34,4 +40,6 @@ public class UIScore : MonoBehaviour
 			+ " Asteroids: " + Score.Instance.Asteroids
 			+ " Time played: " + string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
 	}
+
+	#endregion
 }
