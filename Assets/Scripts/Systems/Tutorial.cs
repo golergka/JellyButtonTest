@@ -61,8 +61,8 @@ public class Tutorial : MonoBehaviour
 		{ yield return new WaitForEndOfFrame(); }
 
 		CurrentStep = Step.Complete;
-		AsteroidGenerator.Instance.enabled = false;
-		Score.Instance.enabled = false;
+		AsteroidGenerator.Instance.enabled = true;
+		Score.Instance.enabled = true;
 
 	}
 }
